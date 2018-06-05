@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<tilte> Abérations chromosomiques </title>
-		<meta charset = "UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
-	</head>
-<body>
-<a href="/"> Accueil</a>
-<div class="container">
+{% extends "layout.html" %}
 	
-	{% block content %}
+    {% block content %}
+    {{population}}
+    {% if population.telomeresBis %}
+    mon tableau existe
+    {% else %}
+    il n'existe pas
+    {% endif %} 
+    {{population.telomeres}}
 		<div class="row">
 			<div class="col-sm-3">
 				<img src="/../../uploads/{{telomere.pictures}}" alt="{{telomere.name}}" style="width: 100%">
@@ -24,7 +21,9 @@
 					{{telomere.description}}
 				</p>
 				<h3>Types </h3>
-				{% for telomere in population.telomeres %}
+                {% for telomere in population.telomeresBis %}
+                {{telomere}}
+                <h1> test</h1>
 				<a href="/type/{{types}}" >Editer telomere.name{{telomere.name}} </a>
 				<span style="background-color: aqua" class="label label-default">    :   </span>
 				<br>

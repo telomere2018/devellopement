@@ -6,7 +6,7 @@ var teloSchema = new mongoose.Schema({
 	description: String
 });
 
-teloSchema.virtual('population', {
+teloSchema.virtual('populations', {
 	ref: 'Population',
 	localField: '_id',
 	foreignField: 'telomeres'
