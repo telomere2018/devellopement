@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<tilte>Altérations chromosomiques</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	</head>
+<body>
+
+	<hr>
+	<div class="container">
+	<a href="/new" class="btn btn-primary">Ajouter un échantillon : </a>
+	<hr>
+	<h1> liste des populations pour un échantillon </h1>
+	{% block content %}
+		<h2>Liste des populations : </h2>
+		
+		{% for t in telomeres %}
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a href="/{{t._id}}">{{t.name}}</a>
+			</div>
+			<div class="panel-body">
+				{{t.description}}
+				{% for population in t.telomeres %}
+				population? 	
+			</br>
+				
+			{{population._id}}
+			<br>
+			{{population.name}}
+				{% endfor %}
+				
+			</div>
+		</div>
+		{% endfor %}
+
+
+
+		
+
+
+
+
+
+	{% endblock %}
+			<hr>
+	<div class="test-center">copyright 2018
+	</div><hr></div>
+
+</body>
+
+
+</html>

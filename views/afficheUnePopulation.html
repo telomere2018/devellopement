@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<tilte> Abérations chromosomiques </title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+<body>
+<a href="/"> Accueil</a>
+<div class="container">
+	
+	{% block content %}
+		<div class="row">
+			<div class="col-sm-3">
+				<img src="/../../uploads/{{telomere.pictures}}" alt="{{telomere.name}}" style="width: 100%">
+			</div>
+			<div class="col-sm-9">
+				<h2>{{population.name}} <small> description n° {{population.description}}</small></h2>
+				<a href="/edit/{{telomere}}" class="btn btn-default">Editer {{telomere.name}} de couleur {{telomere.color}} </a>
+				<a href="/delete/{{telomere}}" class="btn btn-danger">Effacer de la base {{telomere.name}} de couleur {{telomere.color}} </a>
+<hr>
+				<p class="lead">
+					{{telomere.description}}
+				</p>
+				<h3>Types </h3>
+				{% for telomere in population.telomeres %}
+				<a href="/type/{{types}}" >Editer telomere.name{{telomere.name}} </a>
+				<span style="background-color: aqua" class="label label-default">    :   </span>
+				<br>
+				{{telomere.name}}
+				{% endfor %}
+			</div>
+		</div>
+	{% endblock %}		
+</div>		
+</body>
+
+
+</html>
