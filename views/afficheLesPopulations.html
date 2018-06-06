@@ -16,27 +16,26 @@
 	{% block content %}
 		<h2>Liste des populations : </h2>
 		
-		{% for t in telomeres %}
-	
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<a href="/{{t._id}}">{{t.name}}</a>
-			</div>
-			<div class="panel-body">
-				{{t.description}}
-				{% for population in t.telomeres %}
-				population? 	
-			</br>
-				
-			{{population._id}}
+		
+		<TABLE BORDER=5 CELLPADDING=10 CELLSPACING=10>
+				<TR>
+			{% for population in populations %}
+			{{loop.index}}
+			<h1> test</h1>
+			
+			<span style="background-color: aqua" class="label label-default">    :   </span>
 			<br>
-			{{population.name}}
-				{% endfor %}
+			{% if 0 == ( loop.index % 10 ) %}
+					<TR>
+			{% endif %}
+						<TD><a href="/{{population._id}}">{{population.name}}</a>{{telomere.name}} {{loop.index}}</a></TD>
+			{% if 0 == ( loop.index % 10 ) %}            
+		</TR>
+			{% endif %}
 				
-			</div>
-		</div>
-		{% endfor %}
-
+			{% endfor %}
+			</TR>
+		</TABLE>
 
 
 		

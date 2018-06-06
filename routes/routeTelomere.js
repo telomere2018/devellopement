@@ -5,8 +5,8 @@ var Population = require('./../models/Population.js');
 
 
 router.get('/', (req, res) => {
-  Population.find({}).populate('telomeres').then(telomeres =>{
-	res.render('./../views/indexTelomere.html', {telomeres: telomeres});
+  Population.find({}).populate('telomeres').then(populations =>{
+	res.render('./../views/afficheLesPopulations.html', {populations: populations});
 	});
 });
 

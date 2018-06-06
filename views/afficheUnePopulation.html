@@ -20,15 +20,26 @@
 				<p class="lead">
 					{{telomere.description}}
 				</p>
-				<h3>Types </h3>
-                {% for telomere in population.telomeresBis %}
-                {{telomere}}
+				<TABLE BORDER=5 CELLPADDING=10 CELLSPACING=10>
+                    <TR>
+                {% for telomere in population.telomeres %}
+                {{loop.index}}
                 <h1> test</h1>
-				<a href="/type/{{types}}" >Editer telomere.name{{telomere.name}} </a>
+				
 				<span style="background-color: aqua" class="label label-default">    :   </span>
 				<br>
-				{{telomere.name}}
-				{% endfor %}
+                {% if 0 == ( loop.index % 10 ) %}
+                        <TR>
+                {% endif %}
+                            <TD><a href="/type/{{types}}" >{{telomere.name}} {{loop.index}}</a></TD>
+                {% if 0 == ( loop.index % 10 ) %}            
+            </TR>
+                {% endif %}
+                    
+                {% endfor %}
+                </TR>
+            </TABLE>
+                
 			</div>
 		</div>
 	{% endblock %}		
