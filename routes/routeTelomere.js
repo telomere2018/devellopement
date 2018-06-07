@@ -50,9 +50,9 @@ router.post('/:id?',(req,res) => {
     console.log("on arGgggggggggggggggggggggggGr");
 	}else{   
     resolve(new Telomere());
-    console.log("elsEEEEEEEEEEEEEE");
+    console.log("new Telomere");
 	}
-    console.log("ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+    
 	}).then(telomere => {
         
 	telomere.name = req.body.name;
@@ -60,7 +60,7 @@ router.post('/:id?',(req,res) => {
     telomere.params = req.body.params;
     telomere.date = req.body.date;
     telomere.description = req.body.description;
-
+        console.log(req.body);
 	if(req.file) {telomere.fileName = req.file.filename};
 
 	return telomere.save();

@@ -15,6 +15,7 @@ nunjucks.configure('views', {
 var upload = multer({
     dest :__dirname + '/uploads'
 });
+
 //tester pour voir 
 //app.set('view engine', 'ejs');
 
@@ -42,7 +43,8 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+//ici file est le nom de l'input du formulaire
+app.use(upload.single('file'));
 
 // serve static files from template
 app.use(express.static(__dirname + '/templateLogReg'));
