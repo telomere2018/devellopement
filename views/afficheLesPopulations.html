@@ -4,7 +4,7 @@
 		<tilte>Altérations chromosomiques</title>
 		<meta charset = "UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 <body>
 
@@ -16,7 +16,15 @@
 	{% block content %}
 		<h2>Liste des populations : </h2>
 		
-		
+		{% for t in populations %}
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a href="/{{t._id}}">{{t.name}}</a>
+			</div>
+			
+		</div>
+		{% endfor %}
 		<TABLE BORDER=5 CELLPADDING=10 CELLSPACING=10>
 				<TR>
 			{% for population in populations %}
@@ -28,7 +36,7 @@
 			{% if 0 == ( loop.index % 10 ) %}
 					<TR>
 			{% endif %}
-						<TD><a href="/{{population._id}}">{{population.name}}</a>{{telomere.name}} {{loop.index}}</a></TD>
+						<TD><a href="/unePopulation/{{population._id}}">{{population.name}}</a>{{telomere.name}} {{loop.index}}</a></TD>
 			{% if 0 == ( loop.index % 10 ) %}            
 		</TR>
 			{% endif %}

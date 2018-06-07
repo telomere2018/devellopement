@@ -4,11 +4,13 @@ var Telomere = require('./../models/Telomere.js');
 var Population = require('./../models/Population.js');
 
 
+
+
 router.get('/', (req, res) => {
-  Population.find({}).then(populations =>{
-	res.render('./../views/afficheLesPopulations.html', {populations: populations});
-	});
-});
+    Population.find({}).then(populations =>{
+      res.render('./../views/afficheLesPopulations.html', {populations: populations});
+      });
+  });
 
 
 router.get('/new', (req, res) => {
@@ -35,9 +37,15 @@ router.get('/delete/:id', (req, res) => {
 
 
 
-router.get('/:id', (req, res) =>{	
+router.get('/unePopulation/:id', (req, res) =>{	
 	Population.findById(req.params.id).populate('telomeres').then(population => {
 		res.render('./../views/afficheUnePopulation.html', {population: population});
+	},	
+	err => res.status(400).send(err));
+});
+router.get('/populationsDUnFichier/:id', (req, res) =>{	
+	Telomere.findById(req.params.id).populate('populations').then(telomere => {
+		res.render('./../views/afficheLesPopDUnFichier.html', {telomere: telomere});
 	},	
 	err => res.status(400).send(err));
 });

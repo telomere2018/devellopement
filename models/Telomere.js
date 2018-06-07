@@ -4,14 +4,17 @@ var teloSchema = new mongoose.Schema({
 	params : [String],
 	date : { type : Date, default: Date.now },
 	description: String,
-	fileName : String
+	fileName : String,
+	populations: [
+		{
+			type : mongoose.Schema.Types.ObjectId,
+			ref: 'Population'
+		}
+				]
 });
 
-teloSchema.virtual('populations', {
-	ref: 'Population',
-	localField: '_id',
-	foreignField: 'telomeres'
-});
+
+
 
 var Telomere = mongoose.model('Telomere', teloSchema);
 

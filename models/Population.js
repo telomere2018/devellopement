@@ -5,6 +5,7 @@ var populationSchema = new mongoose.Schema({
 	date: { type : Date, default :Date.now },
 	description : String,
 
+	
 telomeres: [
 	{
 		type : mongoose.Schema.Types.ObjectId,
@@ -15,6 +16,16 @@ telomeresBis : [
 	{ id : String }
 				]
 });
+
+
+
+/*teloSchema.virtual('populations', {
+	ref: 'Population',
+	localField: '_id',
+	foreignField: 'telomeres'
+}),*/
+
+
 var Population = mongoose.model('Population', populationSchema);
 
 module.exports = Population;

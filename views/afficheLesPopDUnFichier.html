@@ -22,7 +22,7 @@
 				</p>
 				<TABLE BORDER=5 CELLPADDING=10 CELLSPACING=10>
                     <TR>
-                {% for telomere in population.telomeres %}
+                {% for population in telomere.populations %}
                 {{loop.index}}
                 <h1> test</h1>
 				
@@ -31,7 +31,7 @@
                 {% if 0 == ( loop.index % 10 ) %}
                         <TR></TR>
                 {% endif %}
-                            <TD><a href="/populationsDUnFichier/{{telomere._id}}" >{{telomere.name}} {{loop.index}}</a></TD>
+                            <TD><a href="/unePopulation/{{population._id}}" >{{population.name}} {{loop.index}}</a></TD>
                 {% if 0 == ( loop.index % 20 ) %}            
                 <script>alert("dans la boucle fin")</script>
                 {% endif %}
