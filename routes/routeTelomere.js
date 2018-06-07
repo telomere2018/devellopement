@@ -5,22 +5,23 @@ var Population = require('./../models/Population.js');
 
 
 router.get('/', (req, res) => {
-  Population.find({}).populate('telomeres').then(populations =>{
+  Population.find({}).then(populations =>{
 	res.render('./../views/afficheLesPopulations.html', {populations: populations});
 	});
 });
 
 
 router.get('/new', (req, res) => {
-	res.render('./../views/chargerFichier.html');
+    var telomere = new Telomere();
+	res.render('./../views/chargerModifierFichier.html', { telomere : telomere, endpoint : '/' });
 });
 
 router.get('/edit/:id', (req, res) => {
 
 	
-	Type.find({}).then(types => {
+	T.find({}).then(types => {
  	 Population.findById(req.params.id).populate('telomeres').then(population => {
-		res.render('./../views/telomeres/edit.html', {population: population, telomere,telomere, endpoint: '/' + population._id.toString()});
+		res.render('./../views/chargerModifierFichier.html', {population : population, telomere,telomere, endpoint : '/' });
 	})},
 		error => res.statu(500).send(err));
 });
@@ -40,21 +41,27 @@ router.get('/:id', (req, res) =>{
 	},	
 	err => res.status(400).send(err));
 });
+//le ? après id veut dire que c'est un paramètre optionnel 
 router.post('/:id?',(req,res) => {
+    
 	new Promise((resolve,reject) => {
-	if(req.params.id){
-	Telomere.findById(req.params.id).then(resolve, reject);
-	}else{
-	resolve(new Telomere());
+	if(req.params.id){console.log(req.params);
+    Telomere.findById(req.params.id).then(resolve, reject);
+    console.log("on arGgggggggggggggggggggggggGr");
+	}else{   
+    resolve(new Telomere());
+    console.log("elsEEEEEEEEEEEEEE");
 	}
-
+    console.log("ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
 	}).then(telomere => {
+        
 	telomere.name = req.body.name;
-	telomere.description = req.body.description;
-	telomere.number = req.body.number;
-	telomere.types = req.body.types;
+	
+    telomere.params = req.body.params;
+    telomere.date = req.body.date;
+    telomere.description = req.body.description;
 
-	if(req.file) {telomere.pictures = req.file.filename};
+	if(req.file) {telomere.fileName = req.file.filename};
 
 	return telomere.save();
 	}).then(() => {

@@ -7,12 +7,14 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var nunjucks  = require('nunjucks');
-
+var multer = require('multer');
 nunjucks.configure('views', {
 	autoescape: true,
 	express: app
 });
-
+var upload = multer({
+    dest :__dirname + '/uploads'
+});
 //tester pour voir 
 //app.set('view engine', 'ejs');
 
@@ -25,7 +27,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   // we're connected!
 });
-
+//pour aller charger les fichiers téléchargés
+app.use('uploads',express.static(__dirname +'/uploads'));
 //use sessions for tracking logins
 app.use(session({
   secret: 'work hard',

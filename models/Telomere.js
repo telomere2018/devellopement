@@ -3,7 +3,8 @@ var teloSchema = new mongoose.Schema({
 	name : String,
 	params : [String],
 	date : { type : Date, default: Date.now },
-	description: String
+	description: String,
+	fileName : String
 });
 
 teloSchema.virtual('populations', {
