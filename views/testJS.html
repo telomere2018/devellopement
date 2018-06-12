@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+<button onClick="quelDatum()">clic ici et regarde les logs</button>
+
+
+    
+ <script>
+
+function ok(){alert('ok');}
+function quelDate(){
+            var a = new Date();
+            alert(" voici la date de jour: " + a.getDate());
+      }
+      </script>
+<script type = "text/javascript" src="allo.js"></script>
+<script type = "text/javascript" src="./../javascript/allo.js"></script>
+
+<button type="button" value="la date" text="la date du jour" onClick = "ok()">"la date du jour :"</button>
+
+{% endblock %}

@@ -8,6 +8,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var nunjucks  = require('nunjucks');
 var multer = require('multer');
+var fs = require('fs');
+
 nunjucks.configure('views', {
 	autoescape: true,
 	express: app
@@ -40,6 +42,8 @@ app.use(session({
   })
 }));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+ app.use(express.static(__dirname + '/monCss'));
+ app.use(express.static(__dirname + '/javascript'));
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

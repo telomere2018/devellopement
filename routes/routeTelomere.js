@@ -11,6 +11,11 @@ router.get('/', (req, res) => {
       res.render('./../views/afficheLesPopulations.html', {populations: populations});
       });
   });
+  router.get('/test', (req, res) => {
+    Population.find({}).then(populations =>{
+      res.render('./../views/testJS.html');
+      });
+  });
 
 
 router.get('/new', (req, res) => {

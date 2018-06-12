@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<tilte>Altérations chromosomiques</title>
-		<meta charset = "UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
-	</head>
+{% extends "layout.html" %}
+
 <body>
 
+		{% block content %}
 	<hr>
 	<div class="container">
 	<a href="/new" class="btn btn-primary">Ajouter un échantillon : </a>
+	<a href="/test" class="btn btn-primary">Aller à la page de testes : </a>
 	<hr>
 	<h1> liste des populations pour un échantillon </h1>
-	{% block content %}
+	
 		<h2>Liste des populations : </h2>
 		
 		{% for t in populations %}
@@ -52,12 +48,8 @@
 
 
 
-	{% endblock %}
+	
 			<hr>
 	<div class="test-center">copyright 2018
 	</div><hr></div>
-
-</body>
-
-
-</html>
+	{% endblock %}
