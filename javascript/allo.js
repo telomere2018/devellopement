@@ -1,4 +1,4 @@
-
+"use strict";
     function ok(){
         alert('ok');}
 
@@ -8,3 +8,9 @@
     }
 
 
+    (function(){
+        alert('une fonction anonyme allo');
+    })();
+    var test= function(){
+        alert('dans js');
+    }

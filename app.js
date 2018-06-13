@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost/testForAuth');
 var db = mongoose.connection;
 
 //handle mongo error
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'connection database error:'));
 db.once('open', function () {
   // we're connected!
 });
@@ -44,6 +44,7 @@ app.use(session({
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
  app.use(express.static(__dirname + '/monCss'));
  app.use(express.static(__dirname + '/javascript'));
+ app.use(express.static(__dirname + '/fichier'));
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -72,7 +73,9 @@ app.use(function (err, req, res, next) {
 });
 
 
+
+
 // listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
+app.listen(3030, function () {
+  console.log('Express app listening on port 3030');
 });

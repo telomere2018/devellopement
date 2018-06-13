@@ -1,11 +1,19 @@
 var router = require('express').Router();
-
+const fs = require('fs');
+const path = require('path');
+var Lecture = require('./../javascript/Lecture');
 var Telomere = require('./../models/Telomere.js');
 var Population = require('./../models/Population.js');
 
+var fichierLire = new Lecture("P2-PL3.txt");
+console.log('fichierlire : ' + fichierLire);
+
+//ici je teste
 
 
 
+console.log(fichierLire.lire + " <= lire");
+//console.log(Lecture.lire());
 router.get('/', (req, res) => {
     Population.find({}).then(populations =>{
       res.render('./../views/afficheLesPopulations.html', {populations: populations});
@@ -19,7 +27,8 @@ router.get('/', (req, res) => {
 
 
 router.get('/new', (req, res) => {
-    var telomere = new Telomere();
+    console.log(Lecture + " new");
+   telomere = new Telomere();
 	res.render('./../views/chargerModifierFichier.html', { telomere : telomere, endpoint : '/' });
 });
 
@@ -54,6 +63,8 @@ router.get('/populationsDUnFichier/:id', (req, res) =>{
 	},	
 	err => res.status(400).send(err));
 });
+
+
 //le ? après id veut dire que c'est un paramètre optionnel 
 router.post('/:id?',(req,res) => {
     
@@ -67,14 +78,17 @@ router.post('/:id?',(req,res) => {
 	}
     
 	}).then(telomere => {
-        
+    
 	telomere.name = req.body.name;
 	
     telomere.params = req.body.params;
     telomere.date = req.body.date;
     telomere.description = req.body.description;
         console.log(req.body);
-	if(req.file) {telomere.fileName = req.file.filename};
+	if(req.file) {
+        telomere.fileName = req.file.filename
+       
+    };
 
 	return telomere.save();
 	}).then(() => {

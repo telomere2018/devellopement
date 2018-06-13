@@ -1,4 +1,8 @@
 body {
+	background-image:url(fond.jpg);
+  	background-size:cover;
+  	background-repeat: no-repeat;
+ 	margin:0;
     background-color: rgb(110, 6, 58, 0.3);
 }
 
@@ -8,3 +12,10 @@ h1
     color: blue;
 
 }
+
+console.log(" Lecture => " + Lecture);
+
+var Lecture = new Lecture("P3-PL2.txt");
+console.log(Lecture);
+console.log(Lecture.lire + " <= lire");
+//console.log(Lecture.lire());

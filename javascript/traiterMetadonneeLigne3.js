@@ -5,9 +5,18 @@
    extends by georges 2018
 */  
 "use strict";
-alert('dans js');
+
+(function(){
+    alert("une fonction anonyme traiter.js");
+})();
+
+var test= function(){
+    alert('dans test js');
+}
+
 var fs = require('fs');
-var readline = require("./node-readline.js");
+var readline = require('./node-readline.js');
+
 alert('dans js');
  function test(){
     alert('ça demarre');
