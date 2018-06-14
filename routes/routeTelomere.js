@@ -7,8 +7,8 @@ var Population = require('./../models/Population.js');
 var log = require('./../javascript/lectureLigneLog');
 
 console.log(log + " log");
-
-log = new log("fichier/P3-PL2.txt");
+var nombre = 3;
+log = new log("fichier/P3-PL2.txt", 3);
 //var fichierLire = new Lecture("fichier/P3-PL2.txt");
 //console.log('fichierlire : ' + fichierLire);
 
