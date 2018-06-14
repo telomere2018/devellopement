@@ -4,16 +4,22 @@ const path = require('path');
 var Lecture = require('./../javascript/Lecture');
 var Telomere = require('./../models/Telomere.js');
 var Population = require('./../models/Population.js');
+var log = require('./../javascript/lectureLigneLog');
 
-var fichierLire = new Lecture("P2-PL3.txt");
-console.log('fichierlire : ' + fichierLire);
+console.log(log + " log");
+
+log = new log("fichier/P3-PL2.txt");
+//var fichierLire = new Lecture("fichier/P3-PL2.txt");
+//console.log('fichierlire : ' + fichierLire);
 
 //ici je teste
 
-
-
-console.log(fichierLire.lire + " <= lire");
+//console.log(fichierLire.lire() + " <= lire");
 //console.log(Lecture.lire());
+
+
+
+
 router.get('/', (req, res) => {
     Population.find({}).then(populations =>{
       res.render('./../views/afficheLesPopulations.html', {populations: populations});
