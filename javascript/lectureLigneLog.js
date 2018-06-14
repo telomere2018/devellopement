@@ -8,14 +8,15 @@ function lectureLigneLog(adresse){
     nodeReadLines = new nodeReadLines(chemin);
     console.log(nodeReadLines.fopen +  "fopen");
      nodeReadLines.fopen('r');
-
+var count = 0;
     do
     {
    let line = nodeReadLines.fgets();
 
     console.log(line + line);
-
-    }while(nodeReadLines.eof());
+        count++;
+    }while(count<10&&(!nodeReadLines.eof()));
 }
+
 
 module.exports = lectureLigneLog;
