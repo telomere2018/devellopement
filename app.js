@@ -30,6 +30,8 @@ db.on('error', console.error.bind(console, 'connection database error:'));
 db.once('open', function () {
   // we're connected!
 });
+
+
 //pour aller charger les fichiers téléchargés
 app.use('uploads',express.static(__dirname +'/uploads'));
 //use sessions for tracking logins

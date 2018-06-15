@@ -5,15 +5,15 @@
 		<meta charset = "UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <script>
+       
+	</head> <script>
             function quelDate(){
                 var a = new Date();
                 alert(" voici la date de jour: " + a.getDate());
           }
           </script>
-	</head>
 <body>
-    <button value="la date" text="la date du jour"onClick = "quelDate()">"la date du jour :"</button>
+    <button value="la date" text="la date du jour" onClick = "quelDate()">"la date du jour :"</button>
 {% block content %}
 	<form method="POST" action="{{endpoint}}" enctype="multipart/form-data" >
 		<div class="form-group">
@@ -41,7 +41,7 @@
 			<input type="file" id="file" name="file">
 		</div>
 	
-		
+		<input type="reset" value="réinitialisé"/>
 		<input type="submit" class="btn btn-primary" value="enregistrer"/>
 	</form>
 {% endblock %}

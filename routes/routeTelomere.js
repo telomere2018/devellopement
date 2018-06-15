@@ -5,7 +5,7 @@ var Lecture = require('./../javascript/Lecture');
 var Telomere = require('./../models/Telomere.js');
 var Population = require('./../models/Population.js');
 var log = require('./../javascript/lectureLigneLog');
-
+//ici on teste la lecture du fichier et le découpage en paramètre
 console.log(log + " log");
 var nombre = 3;
 log = new log("fichier/P3-PL2.txt", 3);
@@ -18,10 +18,14 @@ log = new log("fichier/P3-PL2.txt", 3);
 //console.log(Lecture.lire());
 
 
-
+Telomere.find({"name":"paul"}).count().then(how=>{
+    console.log("find filename paul ? " + how);
+});
 
 router.get('/', (req, res) => {
+    
     Population.find({}).then(populations =>{
+        console.log(" new test " +populations);
       res.render('./../views/afficheLesPopulations.html', {populations: populations});
       });
   });
@@ -55,7 +59,9 @@ router.get('/delete/:id', (req, res) => {
 });
 
 
-
+router.get('exist',(req,res) =>{
+res.send("ce fichier existe déjà");
+});
 
 router.get('/unePopulation/:id', (req, res) =>{	
 	Population.findById(req.params.id).populate('telomeres').then(population => {
@@ -77,22 +83,29 @@ router.post('/:id?',(req,res) => {
 	new Promise((resolve,reject) => {
 	if(req.params.id){console.log(req.params);
     Telomere.findById(req.params.id).then(resolve, reject);
-    console.log("on arGgggggggggggggggggggggggGr");
+    console.log("on arG");
 	}else{   
     resolve(new Telomere());
     console.log("new Telomere");
 	}
     
 	}).then(telomere => {
-    
-	telomere.name = req.body.name;
+        console.log(req.body.fileName + " coté requete \n");
+        
+        
+    if(!Telomere.find(req.body.filename))
+    {
+     res.redirect('/exist');
+    }
+	telomere.name = req.body.fileName;
 	
     telomere.params = req.body.params;
     telomere.date = req.body.date;
     telomere.description = req.body.description;
         console.log(req.body);
 	if(req.file) {
-        telomere.fileName = req.file.filename
+        
+        telomere.fileName = req.file.filename;
        
     };
 
