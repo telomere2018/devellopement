@@ -14,3 +14,28 @@ var myForm = document.getElementById('myForm');
         e.preventDefault();
 
     });
+
+    document.getElementById("courriel").addEventListener("blur", function (e) {
+
+        // Correspond à une chaîne de la forme xxx@yyy.zzz
+    
+        var regexCourriel = /.+@.+\..+/;
+    
+        var validiteCourriel = "";
+    
+        if (!regexCourriel.test(e.target.value)) {
+    
+            validiteCourriel = "Adresse invalide";
+    
+        }
+    
+        document.getElementById("aideCourriel").textContent = validiteCourriel;
+    
+    });
+    document.querySelector('#file').addEventListener('change', function() {
+
+
+        // Du code…
+    alert(this.files[0].name);
+    
+    });

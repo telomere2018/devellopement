@@ -25,7 +25,7 @@ Telomere.find({"name":"paul"}).count().then(how=>{
 router.get('/', (req, res) => {
     
     Population.find({}).then(populations =>{
-        console.log(" new test " +populations);
+       
       res.render('./../views/afficheLesPopulations.html', {populations: populations});
       });
   });
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/new', (req, res) => {
-    console.log(Lecture + " new");
+   
    telomere = new Telomere();
 	res.render('./../views/chargerModifierFichier.html', { telomere : telomere, endpoint : '/' });
 });
@@ -59,8 +59,8 @@ router.get('/delete/:id', (req, res) => {
 });
 
 
-router.get('exist',(req,res) =>{
-res.send("ce fichier existe déjà");
+router.get('/exist',(req,res) =>{
+res.send("ce nom de fichier existe déjà révenez en arrière et recommencer ou  abandonner");
 });
 
 router.get('/unePopulation/:id', (req, res) =>{	
@@ -80,23 +80,32 @@ router.get('/populationsDUnFichier/:id', (req, res) =>{
 //le ? après id veut dire que c'est un paramètre optionnel 
 router.post('/:id?',(req,res) => {
     
+    
+
+
+
 	new Promise((resolve,reject) => {
 	if(req.params.id){console.log(req.params);
     Telomere.findById(req.params.id).then(resolve, reject);
     console.log("on arG");
 	}else{   
     resolve(new Telomere());
-    console.log("new Telomere");
+    
 	}
     
 	}).then(telomere => {
-        console.log(req.body.fileName + " coté requete \n");
+
         
         
-    if(!Telomere.find(req.body.filename))
-    {
-     res.redirect('/exist');
-    }
+        Telomere.find({"name": req.body.fileName}).count().then(how=>{
+            console.log("find filename  " + req.body.fileName + " ? " + how);
+            if(how!=0){
+                console.log(" exist \n");
+                res.redirect('/exist');
+            }
+        });
+        
+    
 	telomere.name = req.body.fileName;
 	
     telomere.params = req.body.params;

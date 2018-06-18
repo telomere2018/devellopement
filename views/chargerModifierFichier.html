@@ -6,29 +6,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="/css/bootstrap.min.css" rel="stylesheet">
        
-	</head> <script>
-            function quelDate(){
-                var a = new Date();
-                alert(" voici la date de jour: " + a.getDate());
-          }
-          </script>
+	</head> 
 <body>
     <button value="la date" text="la date du jour" onClick = "quelDate()">"la date du jour :"</button>
 {% block content %}
 	<form method="POST" action="{{endpoint}}" enctype="multipart/form-data" >
-		<div class="form-group">
-			<label for="name"> nom du prélèvement </label>
-			<input type="text" id="name" name="name" class="form-control" value = "{{telomere.name}}">
-		</div>
+		
 
 		<div class="form-group">
 			<label for="number"> Date </label>
-			<input type="Date" id="date" name="date" class="form-control" value = "{{telomere.date}}">
+			<input type="Date" id="date" name="date" 
+			disabled="disabled" class="form-control" value = "{{telomere.date}}">
 		</div>
 		
         <div class="form-group">
                 <label for="number"> fileName </label>
-                <input type="text" id="fileName" name="fileName" class="form-control" value = "{{telomere.fileName}}">
+				<input type="text" id="filename" name="filename" 
+				disabled="disabled" class="form-control" value = "{{telomere.fileName}}">
 			</div>
 			
 		<div class="form-group">
@@ -44,8 +38,40 @@
 		<input type="reset" value="réinitialisé"/>
 		<input type="submit" class="btn btn-primary" value="enregistrer"/>
 	</form>
+	<script>
+		if(window.addEventListener){
+    window.addEventListener('load', maFonctionDeTest, false);
+}else{
+    window.attachEvent('onload', maFonctionDeTest);
+}
+
+function maFonctionDeTest(){
+    //on affiche "vive tutoriels en folie"
+    alert("code après le chargement de la page !");
+	
+	
+		
+document.querySelector('#file').addEventListener('change', function() {
+	alert(this.files[0].name);
+
+	var el = document.getElementById('filename');
+	el.setAttribute("disabled", "");
+	console.log(el ," el");
+	el.removeAttribute("disabled");
+	console.log(el ," el");
+	//el.innerHTML = this.files[0].name;
+	el.value = this.files[0].name;
+	});
+	alert("fin de la fonction de chargement !");
+	
+}
+</script>
+<script>
+		function quelDate(){
+			var a = new Date();
+			alert(" voici la date de jour: " + a.getDate());
+	  }
+	  </script>
 {% endblock %}
 </body>
-
-
 </html>
