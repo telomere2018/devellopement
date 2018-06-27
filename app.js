@@ -1,4 +1,5 @@
 var express = require('express');
+const http = require('http');
 var app = express();
 var path = require('path'),
     nodeMailer = require('nodemailer'),
@@ -23,7 +24,11 @@ var upload = multer({
 
 //connect to MongoDB
 mongoose.connect('mongodb://localhost/testForAuth');
+//affichage console
+mongoose.set('debug', true);
 var db = mongoose.connection;
+
+
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection database error:'));
@@ -74,10 +79,20 @@ app.use(function (err, req, res, next) {
   res.send(err.message);
 });
 
+//Get environment port or use 3000
+const port = process.env.PORT || '3033';
+app.set('port', port);
+ 
+//Create HTTP server.
+const server = http.createServer(app);
+ 
+//Listen on port
+server.listen(port, () => console.log(`API running on localhost:${port}`));
+
+/*
 
 
-
-// listen on port 3000
+// listen on port 3030
 app.listen(3030, function () {
   console.log('Express app listening on port 3030');
-});
+});*/

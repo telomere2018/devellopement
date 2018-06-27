@@ -10,6 +10,7 @@
 <body>
     <button value="la date" text="la date du jour" onClick = "quelDate()">"la date du jour :"</button>
 {% block content %}
+<div class="container">
 	<form method="POST" action="{{endpoint}}" enctype="multipart/form-data" >
 		
 
@@ -38,6 +39,7 @@
 		<input type="reset" value="réinitialisé"/>
 		<input type="submit" class="btn btn-primary" value="enregistrer"/>
 	</form>
+</div>
 	<script>
 		if(window.addEventListener){
     window.addEventListener('load', maFonctionDeTest, false);
